@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BEX FULL SDK DEMO</string>
+    <string name="xml_environment_button">Environment: %1$s</string>
+    <string name="xml_environment_dialog_title">Environment</string>
+</resources>

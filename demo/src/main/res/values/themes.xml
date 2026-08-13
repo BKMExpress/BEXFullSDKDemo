@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppCompat-descendant theme required for AppCompatActivity-based screens. -->
+    <style name="Theme.BEXSDK" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+</resources>
