@@ -1,5 +1,7 @@
 # BEX Full SDK Demo
 
+![GitHub Tag](https://img.shields.io/github/v/tag/BKMExpress/BEXFullSDKDemo)
+
 Bu repo, BEX Full SDK’nın Android demo uygulamasını içerir. XML ve Jetpack Compose örnek entegrasyonları inceleyebilirsiniz.
 
 Detaylı entegrasyon rehberi için:
