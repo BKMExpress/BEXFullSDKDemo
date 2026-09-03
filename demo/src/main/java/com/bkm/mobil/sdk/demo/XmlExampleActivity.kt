@@ -248,7 +248,8 @@ class XmlExampleActivity : AppCompatActivity() {
     private fun onCardSelected(result: CardSelectionResult) {
         val selected = result.selectedCard
         val name = selected.cardAlias ?: selected.bexBankInformation.bankShortName
-        val detail = "${selected.bexBankInformation.cardBrand} • ${selected.maskCardNumber}"
+        val detail =
+            "${selected.bexBankInformation.cardBrand} • ${selected.maskCardNumber} • ${selected.bexBankInformation.bankCode}"
 
         runOnUiThread {
             selectedCardName.text = name

@@ -830,6 +830,11 @@ fun DemoScreen(
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
+                            Text(
+                                text = "Bank Code: ${card.selectedCard.bexBankInformation.bankCode}",
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
                         }
                     }
                 }
