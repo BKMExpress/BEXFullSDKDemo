@@ -67,6 +67,7 @@ import com.bkm.mobil.sdk.api.BexFullSdk
 import com.bkm.mobil.sdk.api.BexFullSdkConfig
 import com.bkm.mobil.sdk.api.BexFullSdkTheme
 import com.bkm.mobil.sdk.api.BexSdkError
+import com.bkm.mobil.sdk.api.CardDeletionResult
 import com.bkm.mobil.sdk.api.CardSelectionResult
 import com.bkm.mobil.sdk.api.PaymentCallback
 import com.bkm.mobil.sdk.api.PaymentResult
@@ -1142,6 +1143,17 @@ fun initPaymentSdk(
                     ).show()
                 }
                 onCardSelected(result)
+            }
+
+            override fun onCardDeleted(result: CardDeletionResult) {
+                Log.d("DEMO_APP", "Card Deleted: $result")
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        context,
+                        "Card Deleted: ${result.deletedCard.cardAlias ?: result.deletedCard.bexBankInformation.bankShortName}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         },
         theme = theme,
