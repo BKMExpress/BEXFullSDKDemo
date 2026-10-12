@@ -113,6 +113,21 @@
                 android:layout_marginTop="8dp"
                 android:text="Environment" />
 
+            <CheckBox
+                android:id="@+id/checkbox_troy_sonic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="Troy Sonic Sound" />
+
+            <CheckBox
+                android:id="@+id/checkbox_exit_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Çıkış onay pop-up’ı" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

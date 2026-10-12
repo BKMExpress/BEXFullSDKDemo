@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -44,6 +45,9 @@ class XmlExampleActivity : AppCompatActivity() {
     private lateinit var editSuccessUrl: EditText
     private lateinit var editFailUrl: EditText
 
+    private lateinit var checkboxTroySonic: CheckBox
+    private lateinit var checkboxExitConfirmation: CheckBox
+
     private lateinit var buttonEnvironment: Button
     private lateinit var buttonResetDefaults: Button
     private lateinit var buttonSaveDefaultsCurrent: Button
@@ -81,6 +85,9 @@ class XmlExampleActivity : AppCompatActivity() {
         editInstallmentCount = findViewById(R.id.edit_installment_count)
         editSuccessUrl = findViewById(R.id.edit_success_url)
         editFailUrl = findViewById(R.id.edit_fail_url)
+
+        checkboxTroySonic = findViewById(R.id.checkbox_troy_sonic)
+        checkboxExitConfirmation = findViewById(R.id.checkbox_exit_confirmation)
 
         buttonEnvironment = findViewById(R.id.button_environment)
         buttonResetDefaults = findViewById(R.id.button_reset_defaults)
@@ -235,6 +242,8 @@ class XmlExampleActivity : AppCompatActivity() {
             initParams = paramsWithTransactionId,
             theme = selectedTheme.toPaymentSdkTheme(),
             mode = mode,
+            troySonicSoundEnabled = state.troySonicSoundEnabled,
+            showExitConfirmation = state.showExitConfirmation,
             onError = ::handleError,
             onCardSelected = ::onCardSelected
         )
@@ -303,7 +312,9 @@ class XmlExampleActivity : AppCompatActivity() {
             transactionType = selectedTransactionType,
             environment = selectedEnvironment,
             successUrl = editSuccessUrl.text.toString(),
-            failUrl = editFailUrl.text.toString()
+            failUrl = editFailUrl.text.toString(),
+            troySonicSoundEnabled = checkboxTroySonic.isChecked,
+            showExitConfirmation = checkboxExitConfirmation.isChecked
         )
 
     private fun applyFormState(state: DemoFormState) {
@@ -317,6 +328,8 @@ class XmlExampleActivity : AppCompatActivity() {
         editInstallmentCount.setText(state.installmentCount)
         editSuccessUrl.setText(state.successUrl)
         editFailUrl.setText(state.failUrl)
+        checkboxTroySonic.isChecked = state.troySonicSoundEnabled
+        checkboxExitConfirmation.isChecked = state.showExitConfirmation
         selectedPaymentSecurity = state.paymentSecurity
         spinnerPaymentSecurity.setSelection(
             when (state.paymentSecurity) {
@@ -395,7 +408,9 @@ class XmlExampleActivity : AppCompatActivity() {
                     transactionType = defaultsForDialog.transactionType,
                     environment = defaultsForDialog.environment,
                     successUrl = successUrlEdit.text.toString(),
-                    failUrl = failUrlEdit.text.toString()
+                    failUrl = failUrlEdit.text.toString(),
+                    troySonicSoundEnabled = defaultsForDialog.troySonicSoundEnabled,
+                    showExitConfirmation = defaultsForDialog.showExitConfirmation
                 )
                 lifecycleScope.launch {
                     saveDefaults(newState)

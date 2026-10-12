@@ -31,7 +31,9 @@ data class DemoFormState(
     val transactionType: TransactionType = TransactionType.SALE,
     val environment: BexEnvironment = BexEnvironment.DEV,
     val successUrl: String = "",
-    val failUrl: String = ""
+    val failUrl: String = "",
+    val troySonicSoundEnabled: Boolean = true,
+    val showExitConfirmation: Boolean = true
 ) {
     fun toInitParams(): SdkInitParams? {
         val amount = paymentAmount.toDoubleOrNull() ?: return null

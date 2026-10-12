@@ -3,6 +3,7 @@ package com.bkm.mobil.sdk.demo
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -27,6 +28,8 @@ private val KEY_TRANSACTION_TYPE = stringPreferencesKey("transaction_type")
 private val KEY_ENVIRONMENT = stringPreferencesKey("environment")
 private val KEY_SUCCESS_URL = stringPreferencesKey("success_url")
 private val KEY_ERROR_URL = stringPreferencesKey("error_url")
+private val KEY_TROY_SONIC_SOUND = booleanPreferencesKey("troy_sonic_sound_enabled")
+private val KEY_SHOW_EXIT_CONFIRMATION = booleanPreferencesKey("show_exit_confirmation")
 
 private val BUILTIN_DEFAULTS = DemoFormState()
 
@@ -50,7 +53,11 @@ fun Context.getDefaultsFlow(): Flow<DemoFormState> =
                 runCatching { BexEnvironment.valueOf(name) }.getOrNull()
             } ?: BUILTIN_DEFAULTS.environment,
             successUrl = prefs[KEY_SUCCESS_URL] ?: BUILTIN_DEFAULTS.successUrl,
-            failUrl = prefs[KEY_ERROR_URL] ?: BUILTIN_DEFAULTS.failUrl
+            failUrl = prefs[KEY_ERROR_URL] ?: BUILTIN_DEFAULTS.failUrl,
+            troySonicSoundEnabled = prefs[KEY_TROY_SONIC_SOUND]
+                ?: BUILTIN_DEFAULTS.troySonicSoundEnabled,
+            showExitConfirmation = prefs[KEY_SHOW_EXIT_CONFIRMATION]
+                ?: BUILTIN_DEFAULTS.showExitConfirmation
         )
     }
 
@@ -70,5 +77,7 @@ suspend fun Context.saveDefaults(state: DemoFormState) {
         prefs[KEY_ENVIRONMENT] = state.environment.name
         prefs[KEY_SUCCESS_URL] = state.successUrl
         prefs[KEY_ERROR_URL] = state.failUrl
+        prefs[KEY_TROY_SONIC_SOUND] = state.troySonicSoundEnabled
+        prefs[KEY_SHOW_EXIT_CONFIRMATION] = state.showExitConfirmation
     }
 }
